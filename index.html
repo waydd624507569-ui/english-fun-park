@@ -104,6 +104,7 @@
   .mc-quiz{border-top:6px solid var(--red);} .mc-quiz .tag{background:var(--red);}
   .mc-notebook{border-top:6px solid var(--yellow);} .mc-notebook .tag{background:#f2a30f;}
   .mc-wrong{border-top:6px solid var(--red);} .mc-wrong .tag{background:var(--red);}
+  .mc-listen{border-top:6px solid #00a7b5;} .mc-listen .tag{background:#00a7b5;}
   .daily-strip{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:-2px 0 12px;}
   .daily-strip span{background:rgba(255,255,255,.88);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:800;box-shadow:0 2px 7px rgba(58,58,92,.09);}
   .home-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;}
@@ -237,7 +238,11 @@
   .learn-card.flip .front{transform:rotateY(180deg);}
   .learn-card.flip .back{transform:rotateY(0deg);}
   .learn-word{font-size:44px;font-weight:900;color:var(--blue);letter-spacing:1px;text-transform:capitalize;}
+  .learn-phonetic{font-size:18px;font-weight:800;color:#1f9d66;letter-spacing:.5px;margin-top:-7px;}
+  .learn-syllables{font-size:16px;font-weight:800;color:#8a6a1f;background:#fff7d6;border-radius:999px;padding:4px 11px;}
   .learn-emoji{font-size:64px;}
+  .record-panel{display:none;text-align:center;background:rgba(255,255,255,.88);border-radius:16px;padding:10px 12px;box-shadow:var(--shadow);}
+  .record-panel audio{width:min(100%,330px);height:36px;display:block;margin:0 auto 8px;}
   .learn-cn{font-size:32px;font-weight:800;color:var(--brand);}
   .learn-ex{font-size:15px;color:var(--ink-soft);text-align:center;padding:0 18px;font-weight:600;line-height:1.5;}
   .learn-hint{font-size:13px;color:var(--ink-soft);font-weight:600;}
@@ -275,6 +280,8 @@
   .q-emoji{font-size:58px;}
   .q-cn{font-size:27px;font-weight:800;margin-top:4px;color:var(--ink);}
   .q-prompt{font-size:13px;color:var(--ink-soft);margin-top:2px;font-weight:600;}
+  .spell-meta{min-height:24px;font-size:14px;font-weight:800;color:#1f9d66;margin-top:7px;}
+  .spell-meta .meta-syllables{display:inline-block;background:#fff7d6;color:#8a6a1f;border-radius:999px;padding:3px 9px;margin-left:5px;}
   .spell-slots{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;min-height:52px;
     border:3px dashed #d9d9ea;border-radius:14px;padding:9px;margin:14px auto 0;max-width:400px;}
   .slot{min-width:40px;height:44px;background:#f2f2fa;border-radius:10px;display:flex;align-items:center;
@@ -354,7 +361,7 @@
 
 <div id="app" data-page-node-id="Hs5OooVJnZIVk5BDrMrJR1">
   <header class="app-bar" data-page-node-id="PyVO3vXCkNVf1mIEhaGn2m">
-    <div class="logo" data-page-node-id="I8a6RwXJ29VCZJwPLwhSIn">🎈 英语乐园 <small data-page-node-id="fq7zJK1xPY6DWalmiYax3Y">2.0 · 小 1-6 年级</small></div>
+    <div class="logo" data-page-node-id="I8a6RwXJ29VCZJwPLwhSIn">🎈 英语乐园 <small data-page-node-id="fq7zJK1xPY6DWalmiYax3Y">3.0 · 小 1-6 年级</small></div>
     <div class="bar-right" data-page-node-id="pDDhoFcmo2mPfPWenviVs5">
       <div class="pill" title="等级" data-page-node-id="E6Fvhhzs7ij2RLm860iSaO">🏅 <span id="levelName" data-page-node-id="MAwfHCPjNxU2fU1XD8azv1">Lv.1 英语小学者</span></div>
       <div class="pill" title="经验值" data-page-node-id="BepYiTD37gabU0axJkOxjw">⭐ <span id="starCount" data-page-node-id="QXEnQgCYvxrZILGtDTPgEH">0</span></div>
@@ -378,7 +385,7 @@
     <section class="view active" id="view-home" data-page-node-id="suHelj3eKo9Vgx8liZxBwo">
       <div class="hero" data-page-node-id="HIAAgh7s2g7IkZFERgNscX">
         <div class="title" data-page-node-id="QFPskrvScb4Q3ryO4zAiOP">🎉 <span data-page-node-id="YTQkHroBAZ4kY70tJAX3Xq">英语</span><span data-page-node-id="UkNLF53Zos1n89LtmkqeQ6">探险</span><span data-page-node-id="olftkHCRNF24LhXiTdUTQQ">岛</span> 🎉</div>
-        <div class="sub" data-page-node-id="j3AUsokgGrtzHhhJ9Flavj">v2.0 · 一二三四五六全年级 · 边玩边学 ~</div>
+        <div class="sub" data-page-node-id="j3AUsokgGrtzHhhJ9Flavj">v3.0 · 一二三四五六全年级 · 边玩边学 ~</div>
       </div>
       <div class="menu-grid" data-page-node-id="ppQtMBHcl5T6BynMJPeboA">
         <div class="menu-card mc-learn" onclick="goThemes('learn')" data-page-node-id="HrCBUy7bWYxBgq39rA2iXt">
@@ -404,6 +411,10 @@
         <div class="menu-card mc-wrong" onclick="goWrongBook()">
           <span class="tag" id="homeWrongCount">今日 0</span><span class="icon">📕</span>
           <div class="name">错词本</div><div class="desc">错过的词再练一遍</div>
+        </div>
+        <div class="menu-card mc-listen" onclick="goThemes('listen')">
+          <span class="tag">3.0</span><span class="icon">🎧</span>
+          <div class="name">听音拼写</div><div class="desc">听发音 · 拼单词</div>
         </div>
       </div>
       <div class="home-actions">
@@ -439,6 +450,8 @@
         <div class="learn-card" id="learnCard" onclick="flipCard()" data-page-node-id="rUEGsTa3NprK7LA7ucWZaS">
           <div class="face front" data-page-node-id="ptNrfJPBlGhS1jXHIc2vGV">
             <div class="learn-word" id="learnWord" data-page-node-id="DY2DQYza8G5E89pbnEle2w">apple</div>
+            <div class="learn-phonetic" id="learnPhonetic">/ˈæpəl/</div>
+            <div class="learn-syllables" id="learnSyllables">ap-ple</div>
             <div class="learn-emoji" id="learnEmoji" data-page-node-id="qIgh08yYcEWNpNFEG454h5">🍎</div>
             <div class="learn-hint" data-page-node-id="qfQ6FKkEklGva7ceb9ocqM">👆 点卡片看中文 / 听发音</div>
           </div>
@@ -450,7 +463,12 @@
         <div class="learn-actions" data-page-node-id="vps3n8Cb6X5WmeNs5w2R6U">
           <button class="btn white" onclick="prevWord()" data-page-node-id="J3f4Ox2D2n9c9qw9qGtSZZ">⬅ 上一个</button>
           <button class="btn speak" onclick="speakWord(event)" data-page-node-id="ArDqXFa1qnLbXYoBGDSbXg">🔊 发音</button>
+          <button class="btn white" onclick="toggleRecording()" id="recordBtn">🎙 跟读录音</button>
           <button class="btn white" onclick="nextWord()" data-page-node-id="O4BuRDwDGouVIgh5FfyUac">下一个 ➡</button>
+        </div>
+        <div class="record-panel" id="recordPanel">
+          <audio id="recordAudio" controls></audio>
+          <button class="btn white small" onclick="clearRecording()">🗑 删除录音</button>
         </div>
         <button class="btn green small" onclick="markLearned()" data-page-node-id="a28lEvbvhClotzvPDNInpC">✅ 我学会啦</button>
       </div>
@@ -481,6 +499,7 @@
           <div class="q-emoji" id="spellEmoji" data-page-node-id="1d6V329UnV0uvGW6gjosT8">🍎</div>
           <div class="q-cn" id="spellCn" data-page-node-id="aCcxwwvnorXc9GOIwiiZZa">苹果</div>
           <div class="q-prompt" id="spellPrompt" data-page-node-id="xtzsyaAXDCdyfXyi8csybL">点击下面的字母，拼出这个单词吧！</div>
+          <div class="spell-meta" id="spellMeta"></div>
           <div class="spell-help-row">
             <button class="btn speak small" onclick="playSpellSound()" data-page-node-id="tcf3mAVkrAFuGIsQEeLdHd">🔊 再听一遍</button>
             <button class="btn white small" onclick="spellHint()">💡 提示一个字母</button>
@@ -1795,6 +1814,9 @@ const BOOKS = [
   ]},
 ];
 
+/* 3.0 单词发音与音节数据：p=音标，s=音节拆分 */
+const WORD_META = {"hello":{"p":"hɛˈloʊ","s":"hel-lo"},"hi":{"p":"haɪ","s":"hi"},"goodbye":{"p":"ˌgʊdˈbaɪ","s":"good-bye"},"name":{"p":"neɪm","s":"name"},"morning":{"p":"ˈmɔrnɪŋ","s":"morn-ing"},"afternoon":{"p":"ˌæftərˈnun","s":"af-ter-noon"},"thanks":{"p":"θæŋks","s":"thanks"},"please":{"p":"pliz","s":"please"},"yes":{"p":"jɛs","s":"yes"},"school":{"p":"skul","s":"school"},"teacher":{"p":"ˈtiʧər","s":"teach-er"},"student":{"p":"ˈstudənt","s":"stu-dent"},"classroom":{"p":"ˈklæsˌrum","s":"class-room"},"playground":{"p":"ˈpleɪˌgraʊnd","s":"play-ground"},"book":{"p":"bʊk","s":"book"},"bag":{"p":"bæg","s":"bag"},"desk":{"p":"dɛsk","s":"desk"},"chair":{"p":"ʧɛr","s":"chair"},"head":{"p":"hɛd","s":"head"},"face":{"p":"feɪs","s":"face"},"eye":{"p":"aɪ","s":"eye"},"ear":{"p":"ɪr","s":"ear"},"nose":{"p":"noʊz","s":"nose"},"mouth":{"p":"maʊθ","s":"mouth"},"hand":{"p":"hænd","s":"hand"},"foot":{"p":"fʊt","s":"foot"},"arm":{"p":"ɑrm","s":"arm"},"red":{"p":"rɛd","s":"red"},"yellow":{"p":"ˈjɛloʊ","s":"yel-low"},"blue":{"p":"blu","s":"blue"},"green":{"p":"grin","s":"green"},"black":{"p":"blæk","s":"black"},"white":{"p":"waɪt","s":"white"},"orange":{"p":"ˈɔrɪnʤ","s":"or-ange"},"pink":{"p":"pɪŋk","s":"pink"},"purple":{"p":"ˈpərpəl","s":"pur-ple"},"family":{"p":"ˈfæməli","s":"fam-i-ly"},"father":{"p":"ˈfɑðər","s":"fa-ther"},"mother":{"p":"ˈməðər","s":"moth-er"},"brother":{"p":"ˈbrəðər","s":"broth-er"},"sister":{"p":"ˈsɪstər","s":"sis-ter"},"grandpa":{"p":"ˈgrændˌpɑ","s":"grand-pa"},"grandma":{"p":"ˈgrændmɑ","s":"grand-ma"},"uncle":{"p":"ˈəŋkəl","s":"un-cle"},"aunt":{"p":"ɔnt","s":"aunt"},"cat":{"p":"kæt","s":"cat"},"dog":{"p":"dɔg","s":"dog"},"bird":{"p":"bərd","s":"bird"},"fish":{"p":"fɪʃ","s":"fish"},"panda":{"p":"ˈpændə","s":"pan-da"},"monkey":{"p":"ˈməŋki","s":"mon-key"},"tiger":{"p":"ˈtaɪgər","s":"tiger"},"duck":{"p":"dək","s":"duck"},"pig":{"p":"pɪg","s":"pig"},"one":{"p":"wən","s":"one"},"two":{"p":"tu","s":"two"},"three":{"p":"θri","s":"three"},"four":{"p":"fɔr","s":"four"},"five":{"p":"faɪv","s":"five"},"six":{"p":"sɪks","s":"six"},"seven":{"p":"ˈsɛvən","s":"sev-en"},"eight":{"p":"eɪt","s":"eight"},"ten":{"p":"tɛn","s":"ten"},"apple":{"p":"ˈæpəl","s":"ap-ple"},"banana":{"p":"bəˈnænə","s":"ba-nana"},"egg":{"p":"ɛg","s":"egg"},"milk":{"p":"mɪlk","s":"milk"},"bread":{"p":"brɛd","s":"bread"},"rice":{"p":"raɪs","s":"rice"},"water":{"p":"ˈwɔtər","s":"wa-ter"},"cake":{"p":"keɪk","s":"cake"},"noodles":{"p":"ˈnudəlz","s":"noo-dles"},"toy":{"p":"tɔɪ","s":"toy"},"ball":{"p":"bɔl","s":"ball"},"doll":{"p":"dɑl","s":"doll"},"car":{"p":"kɑr","s":"car"},"kite":{"p":"kaɪt","s":"kite"},"robot":{"p":"ˈroʊˌbət","s":"ro-bot"},"balloon":{"p":"bəˈlun","s":"bal-loon"},"puppet":{"p":"ˈpəpɪt","s":"pup-pet"},"bear":{"p":"bɛr","s":"bear"},"coat":{"p":"koʊt","s":"coat"},"shirt":{"p":"ʃərt","s":"shirt"},"t-shirt":{"p":"ˈtiˌʃɜrt","s":"T-shirt"},"skirt":{"p":"skərt","s":"skirt"},"dress":{"p":"drɛs","s":"dress"},"hat":{"p":"hæt","s":"hat"},"socks":{"p":"sɑks","s":"socks"},"shoes":{"p":"ʃuz","s":"shoes"},"trousers":{"p":"ˈtraʊzərz","s":"trousers"},"room":{"p":"rum","s":"room"},"door":{"p":"dɔr","s":"door"},"window":{"p":"ˈwɪndoʊ","s":"win-dow"},"bed":{"p":"bɛd","s":"bed"},"box":{"p":"bɑks","s":"box"},"map":{"p":"mæp","s":"map"},"light":{"p":"laɪt","s":"light"},"clock":{"p":"klɑk","s":"clock"},"key":{"p":"ki","s":"key"},"run":{"p":"rən","s":"run"},"jump":{"p":"ʤəmp","s":"jump"},"walk":{"p":"wɔk","s":"walk"},"sit":{"p":"sɪt","s":"sit"},"stand":{"p":"stænd","s":"stand"},"eat":{"p":"it","s":"eat"},"drink":{"p":"drɪŋk","s":"drink"},"sleep":{"p":"slip","s":"sleep"},"swim":{"p":"swɪm","s":"swim"},"night":{"p":"naɪt","s":"night"},"sorry":{"p":"ˈsɑri","s":"sor-ry"},"excuse":{"p":"ɪkˈskjuz","s":"ex-cuse"},"welcome":{"p":"ˈwɛlkəm","s":"wel-come"},"fine":{"p":"faɪn","s":"fine"},"bye":{"p":"baɪ","s":"bye"},"pencil":{"p":"ˈpɛnsəl","s":"pen-cil"},"ruler":{"p":"ˈrulər","s":"ruler"},"rubber":{"p":"ˈrəbər","s":"rub-ber"},"pen":{"p":"pɛn","s":"pen"},"crayon":{"p":"kreɪɑn","s":"cray-on"},"sharpener":{"p":"ˈʃɑrpənər","s":"shar-pen-er"},"glue":{"p":"glu","s":"glue"},"friend":{"p":"frɛnd","s":"friend"},"boy":{"p":"bɔɪ","s":"boy"},"girl":{"p":"gərl","s":"girl"},"he":{"p":"hi","s":"he"},"she":{"p":"ʃi","s":"she"},"tall":{"p":"tɔl","s":"tall"},"short":{"p":"ʃɔrt","s":"short"},"thin":{"p":"θɪn","s":"thin"},"strong":{"p":"strɔŋ","s":"strong"},"circle":{"p":"ˈsərkəl","s":"cir-cle"},"square":{"p":"skwɛr","s":"square"},"triangle":{"p":"ˈtraɪˌæŋgəl","s":"tri-an-gle"},"star":{"p":"stɑr","s":"star"},"line":{"p":"laɪn","s":"line"},"big":{"p":"bɪg","s":"big"},"small":{"p":"smɔl","s":"small"},"long":{"p":"lɔŋ","s":"long"},"sun":{"p":"sən","s":"sun"},"rain":{"p":"reɪn","s":"rain"},"wind":{"p":"wɪnd","s":"wind"},"cloud":{"p":"klaʊd","s":"cloud"},"snow":{"p":"snoʊ","s":"snow"},"hot":{"p":"hɑt","s":"hot"},"cold":{"p":"koʊld","s":"cold"},"warm":{"p":"wɔrm","s":"warm"},"cool":{"p":"kul","s":"cool"},"happy":{"p":"ˈhæpi","s":"hap-py"},"sad":{"p":"sæd","s":"sad"},"angry":{"p":"ˈæŋgri","s":"an-gry"},"tired":{"p":"taɪərd","s":"tired"},"hungry":{"p":"ˈhəŋgri","s":"hun-gry"},"thirsty":{"p":"ˈθərsti","s":"thirsty"},"bored":{"p":"bɔrd","s":"bored"},"excited":{"p":"ɪkˈsaɪtɪd","s":"ex-cit-ed"},"afraid":{"p":"əˈfreɪd","s":"afraid"},"get up":{"p":"gɪt əp","s":"get up"},"breakfast":{"p":"ˈbrɛkfəst","s":"break-fast"},"go to school":{"p":"goʊ tɪ skul","s":"go-to school"},"class":{"p":"klæs","s":"class"},"lunch":{"p":"lənʧ","s":"lunch"},"play":{"p":"pleɪ","s":"play"},"homework":{"p":"ˈhoʊmˌwərk","s":"home-work"},"watch tv":{"p":"wɔʧ ˌtɛləˈvɪʒən","s":"watch tv"},"go to bed":{"p":"goʊ tɪ bɛd","s":"go-to bed"},"soup":{"p":"sup","s":"soup"},"meat":{"p":"mit","s":"meat"},"chicken":{"p":"ˈʧɪkən","s":"chick-en"},"vegetable":{"p":"ˈvɛʤtəbəl","s":"veg-etable"},"fruit":{"p":"frut","s":"fruit"},"candy":{"p":"ˈkændi","s":"can-dy"},"juice":{"p":"ʤus","s":"juice"},"tea":{"p":"ti","s":"tea"},"doctor":{"p":"ˈdɔktər","s":"doc-tor"},"nurse":{"p":"nərs","s":"nurse"},"police":{"p":"pəˈlis","s":"po-lice"},"driver":{"p":"ˈdraɪvər","s":"driv-er"},"farmer":{"p":"ˈfɑrmər","s":"farmer"},"worker":{"p":"ˈwərkər","s":"work-er"},"cook":{"p":"kʊk","s":"cook"},"singer":{"p":"ˈsɪŋər","s":"singer"},"writer":{"p":"ˈraɪtər","s":"writ-er"},"park":{"p":"pɑrk","s":"park"},"zoo":{"p":"zu","s":"zoo"},"shop":{"p":"ʃɑp","s":"shop"},"hospital":{"p":"ˈhɑˌspɪtəl","s":"hos-pi-tal"},"library":{"p":"ˈlaɪbrɛˌri","s":"li-brary"},"cinema":{"p":"ˈsɪnəmə","s":"cin-e-ma"},"museum":{"p":"mˈjuziəm","s":"mu-se-um"},"restaurant":{"p":"ˈrɛˌstrɑnt","s":"restau-rant"},"farm":{"p":"fɑrm","s":"farm"},"bus":{"p":"bəs","s":"bus"},"bike":{"p":"baɪk","s":"bike"},"train":{"p":"treɪn","s":"train"},"plane":{"p":"pleɪn","s":"plane"},"ship":{"p":"ʃɪp","s":"ship"},"taxi":{"p":"ˈtæksi","s":"taxi"},"subway":{"p":"ˈsəbˌweɪ","s":"sub-way"},"boat":{"p":"boʊt","s":"boat"},"sing":{"p":"sɪŋ","s":"sing"},"dance":{"p":"dæns","s":"dance"},"draw":{"p":"drɔ","s":"draw"},"read":{"p":"rɛd","s":"read"},"write":{"p":"raɪt","s":"write"},"skip":{"p":"skɪp","s":"skip"},"brown":{"p":"braʊn","s":"brown"},"colour":{"p":"ˈkələr","s":"colour"},"paint":{"p":"peɪnt","s":"paint"},"body":{"p":"ˈbɑdi","s":"body"},"hair":{"p":"hɛr","s":"hair"},"rabbit":{"p":"ˈræbɪt","s":"rab-bit"},"elephant":{"p":"ˈɛləfənt","s":"ele-phant"},"like":{"p":"laɪk","s":"like"},"have":{"p":"hæv","s":"have"},"birthday":{"p":"ˈbərθˌdeɪ","s":"birth-day"},"gift":{"p":"gɪft","s":"gift"},"candle":{"p":"ˈkændəl","s":"can-dle"},"party":{"p":"ˈpɑrti","s":"par-ty"},"back":{"p":"bæk","s":"back"},"new":{"p":"nu","s":"new"},"again":{"p":"əˈgɛn","s":"again"},"grandfather":{"p":"ˈgrænˌfɑðər","s":"grand-fa-ther"},"grandmother":{"p":"ˈgrændˌməðər","s":"grand-moth-er"},"baby":{"p":"ˈbeɪbi","s":"ba-by"},"lion":{"p":"laɪən","s":"li-on"},"giraffe":{"p":"ʤəræf","s":"gi-raffe"},"zebra":{"p":"ˈzibrə","s":"ze-bra"},"deer":{"p":"dɪr","s":"deer"},"fox":{"p":"fɑks","s":"fox"},"old":{"p":"oʊld","s":"old"},"how":{"p":"haʊ","s":"how"},"year":{"p":"jɪr","s":"year"},"count":{"p":"kaʊnt","s":"count"},"number":{"p":"ˈnəmbər","s":"num-ber"},"guess":{"p":"gɛs","s":"guess"},"answer":{"p":"ˈænsər","s":"an-swer"},"right":{"p":"raɪt","s":"right"},"pear":{"p":"pɛr","s":"pear"},"grape":{"p":"greɪp","s":"grape"},"watermelon":{"p":"ˈwɔtərˌmɛlən","s":"wa-ter-mel-on"},"strawberry":{"p":"ˈstrɔˌbɛri","s":"straw-ber-ry"},"some":{"p":"səm","s":"some"},"how many":{"p":"haʊ ˈmɛni","s":"how-many"},"eleven":{"p":"ˈilɛvən","s":"eleven"},"twelve":{"p":"twɛlv","s":"twelve"},"thirteen":{"p":"ˈθərˈtin","s":"thir-teen"},"fourteen":{"p":"ˌfɔrˈtin","s":"four-teen"},"fifteen":{"p":"ˈfɪfˈtin","s":"fif-teen"},"twenty":{"p":"tˈwɛnti","s":"twen-ty"},"see":{"p":"si","s":"see"},"blackboard":{"p":"ˈblækˌbɔrd","s":"black-board"},"picture":{"p":"ˈpɪkʧər","s":"pic-ture"},"computer":{"p":"kəmˈpjutər","s":"com-put-er"},"fan":{"p":"fæn","s":"fan"},"wall":{"p":"wɔl","s":"wall"},"near":{"p":"nɪr","s":"near"},"schoolbag":{"p":"ˈskulbæɡ","s":"school-bag"},"maths book":{"p":"mæθs bʊk","s":"maths book"},"english book":{"p":"ˈɪŋlɪʃ bʊk","s":"en-glish-book"},"chinese book":{"p":"ʧaɪˈniz bʊk","s":"chi-ne-se-book"},"storybook":{"p":"ˈstɔriˌbʊk","s":"sto-ry-book"},"notebook":{"p":"ˈnoʊtˌbʊk","s":"note-book"},"pencil box":{"p":"ˈpɛnsəl bɑks","s":"pen-cil box"},"heavy":{"p":"ˈhɛvi","s":"heavy"},"quiet":{"p":"kwaɪət","s":"qui-et"},"glasses":{"p":"ˈglæsɪz","s":"glass-es"},"shoe":{"p":"ʃu","s":"shoe"},"cute":{"p":"kjut","s":"cute"},"home":{"p":"hoʊm","s":"home"},"table":{"p":"ˈteɪbəl","s":"ta-ble"},"sofa":{"p":"ˈsoʊfə","s":"so-fa"},"phone":{"p":"foʊn","s":"phone"},"fridge":{"p":"frɪʤ","s":"fridge"},"find":{"p":"faɪnd","s":"find"},"they":{"p":"ðeɪ","s":"they"},"clean":{"p":"klin","s":"clean"},"beef":{"p":"bif","s":"beef"},"chopsticks":{"p":"ˈʧɑpˌstɪks","s":"chop-sticks"},"bowl":{"p":"boʊl","s":"bowl"},"fork":{"p":"fɔrk","s":"fork"},"knife":{"p":"naɪf","s":"knife"},"spoon":{"p":"spun","s":"spoon"},"parents":{"p":"ˈpɛrənts","s":"par-ents"},"cousin":{"p":"ˈkəzən","s":"cousin"},"job":{"p":"ʤɑb","s":"job"},"only":{"p":"ˈoʊnli","s":"on-ly"},"garden":{"p":"ˈgɑrdən","s":"gar-den"},"canteen":{"p":"kænˈtin","s":"can-teen"},"art room":{"p":"ɑrt rum","s":"art-room"},"music room":{"p":"mˈjuzɪk rum","s":"mu-sic-room"},"gym":{"p":"ʤɪm","s":"gym"},"office":{"p":"ˈɔfəs","s":"of-fice"},"floor":{"p":"flɔr","s":"floor"},"next to":{"p":"nɛkst tɪ","s":"nex-t-to"},"weather":{"p":"ˈwɛðər","s":"weath-er"},"sunny":{"p":"ˈsəni","s":"sun-ny"},"cloudy":{"p":"ˈklaʊdi","s":"cloudy"},"windy":{"p":"ˈwɪndi","s":"windy"},"rainy":{"p":"ˈreɪni","s":"rainy"},"snowy":{"p":"snoʊi","s":"snowy"},"umbrella":{"p":"ˈəmˌbrɛlə","s":"um-brel-la"},"boots":{"p":"buts","s":"boots"},"mine":{"p":"maɪn","s":"mine"},"yours":{"p":"jʊrz","s":"yours"},"borrow":{"p":"ˈbɑˌroʊ","s":"bor-row"},"excuse me":{"p":"ɪkˈskjuz mi","s":"ex-cuse me"},"time":{"p":"taɪm","s":"time"},"o'clock":{"p":"əˈklɑk","s":"o'-clock"},"dinner":{"p":"ˈdɪnər","s":"din-ner"},"have a rest":{"p":"hæv ə rɛst","s":"have a rest"},"late":{"p":"leɪt","s":"late"},"week":{"p":"wik","s":"week"},"weekend":{"p":"ˈwiˌkɪnd","s":"week-end"},"season":{"p":"ˈsizən","s":"sea-son"},"spring":{"p":"spərɪŋ","s":"spring"},"summer":{"p":"ˈsəmər","s":"sum-mer"},"autumn":{"p":"ˈɔtəm","s":"au-tumn"},"winter":{"p":"ˈwɪntər","s":"win-ter"},"picnic":{"p":"ˈpɪkˌnɪk","s":"pic-nic"},"snowman":{"p":"sˈnoʊˌmæn","s":"snow-man"},"holiday":{"p":"ˈhɑlɪˌdeɪ","s":"hol-i-day"},"travel":{"p":"ˈtrævəl","s":"trav-el"},"by":{"p":"baɪ","s":"by"},"slow":{"p":"sloʊ","s":"slow"},"sweet":{"p":"swit","s":"sweet"},"help":{"p":"hɛlp","s":"help"},"subject":{"p":"ˈsəbʤɪkt","s":"sub-ject"},"english":{"p":"ˈɪŋlɪʃ","s":"eng-lish"},"maths":{"p":"mæθs","s":"maths"},"science":{"p":"saɪəns","s":"sci-ence"},"art":{"p":"ɑrt","s":"art"},"music":{"p":"mˈjuzɪk","s":"mu-sic"},"pe":{"p":"ˌpi ˈi","s":"P-E"},"interesting":{"p":"ˈɪntəˌrɛstɪŋ","s":"in-ter-est-ing"},"difficult":{"p":"ˈdɪfəkəlt","s":"dif-fi-cult"},"question":{"p":"kˈwɛʃən","s":"ques-tion"},"diet":{"p":"daɪət","s":"di-et"},"healthy":{"p":"ˈhɛlθi","s":"healthy"},"sugar":{"p":"ˈʃʊgər","s":"sug-ar"},"chocolate":{"p":"ˈʧɔklət","s":"choco-late"},"exercise":{"p":"ˈɛksərˌsaɪz","s":"ex-er-cise"},"energy":{"p":"ˈɛnərʤi","s":"en-er-gy"},"keep":{"p":"kip","s":"keep"},"festival":{"p":"ˈfɛstɪvəl","s":"fes-ti-val"},"ghost":{"p":"goʊst","s":"ghost"},"pumpkin":{"p":"ˈpəmpkɪn","s":"pump-kin"},"witch":{"p":"wɪʧ","s":"witch"},"costume":{"p":"ˈkɑstum","s":"cos-tume"},"trick":{"p":"trɪk","s":"trick"},"treat":{"p":"trit","s":"treat"},"celebrate":{"p":"ˈsɛləˌbreɪt","s":"cel-e-brate"},"moon":{"p":"mun","s":"moon"},"policeman":{"p":"pəˈlismən","s":"po-lice-man"},"artist":{"p":"ˈɑrtɪst","s":"artist"},"kitchen":{"p":"ˈkɪʧən","s":"kitchen"},"wash":{"p":"wɑʃ","s":"wash"},"sweep":{"p":"swip","s":"sweep"},"rubbish":{"p":"ˈrəbɪʃ","s":"rub-bish"},"dirty":{"p":"ˈdərti","s":"dirty"},"ready":{"p":"ˈrɛdi","s":"ready"},"smell":{"p":"smɛl","s":"smell"},"together":{"p":"təˈgɛðər","s":"to-geth-er"},"helpful":{"p":"ˈhɛlpfəl","s":"help-ful"},"on foot":{"p":"ɔn fʊt","s":"on-foot"},"metro":{"p":"ˈmɛˌtroʊ","s":"metro"},"far":{"p":"fɑr","s":"far"},"live":{"p":"lɪv","s":"live"},"city":{"p":"ˈsɪti","s":"city"},"traffic":{"p":"ˈtræfɪk","s":"traf-fic"},"road":{"p":"roʊd","s":"road"},"underground":{"p":"ˈəndərˌgraʊnd","s":"un-der-ground"},"wheelchair":{"p":"ˈwiˌlʧɛr","s":"wheel-chair"},"matter":{"p":"ˈmætər","s":"mat-ter"},"ill":{"p":"ɪl","s":"ill"},"headache":{"p":"ˈhɛˌdeɪk","s":"headache"},"fever":{"p":"ˈfivər","s":"fever"},"cough":{"p":"kɔf","s":"cough"},"medicine":{"p":"ˈmɛdəsən","s":"medicine"},"rest":{"p":"rɛst","s":"rest"},"better":{"p":"ˈbɛtər","s":"bet-ter"},"free":{"p":"fri","s":"free"},"busy":{"p":"ˈbɪzi","s":"busy"},"tomorrow":{"p":"təˈmɑˌroʊ","s":"to-mor-row"},"evening":{"p":"ˈivnɪŋ","s":"evening"},"plan":{"p":"plæn","s":"plan"},"meet":{"p":"mit","s":"meet"},"sure":{"p":"ʃʊr","s":"sure"},"call":{"p":"kɔl","s":"call"},"invite":{"p":"ˌɪnˈvaɪt","s":"in-vite"},"present":{"p":"ˈprɛzənt","s":"present"},"decorate":{"p":"ˈdɛkərˌeɪt","s":"dec-o-rate"},"surprise":{"p":"səˈpraɪz","s":"sur-prise"},"begin":{"p":"bɪˈgɪn","s":"be-gin"},"song":{"p":"sɔŋ","s":"song"},"blow":{"p":"bloʊ","s":"blow"},"climb":{"p":"klaɪm","s":"climb"},"meal":{"p":"mil","s":"meal"},"proud":{"p":"praʊd","s":"proud"},"fashion":{"p":"ˈfæʃən","s":"fash-ion"},"show":{"p":"ʃoʊ","s":"show"},"clothes":{"p":"kloʊðz","s":"clothes"},"pretty":{"p":"ˈprɪti","s":"pret-ty"},"wear":{"p":"wɛr","s":"wear"},"king":{"p":"kɪŋ","s":"king"},"clever":{"p":"ˈklɛvər","s":"clever"},"foolish":{"p":"ˈfulɪʃ","s":"fool-ish"},"magic":{"p":"ˈmæʤɪk","s":"mag-ic"},"mirror":{"p":"ˈmɪrər","s":"mir-ror"},"truth":{"p":"truθ","s":"truth"},"lie":{"p":"laɪ","s":"lie"},"honest":{"p":"ˈɑnəst","s":"hon-est"},"parade":{"p":"pəreɪd","s":"pa-rade"},"machine":{"p":"məˈʃin","s":"ma-chine"},"invent":{"p":"ˌɪnˈvɛnt","s":"in-vent"},"wheel":{"p":"wil","s":"wheel"},"telephone":{"p":"ˈtɛləˌfoʊn","s":"tele-phone"},"television":{"p":"ˈtɛləˌvɪʒən","s":"tele-vi-sion"},"future":{"p":"fˈjuʧər","s":"fu-ture"},"housework":{"p":"ˈhaʊsˌwərk","s":"house-work"},"easy":{"p":"ˈizi","s":"easy"},"world":{"p":"wərld","s":"world"},"letter":{"p":"ˈlɛtər","s":"let-ter"},"country":{"p":"ˈkəntri","s":"coun-try"},"capital":{"p":"ˈkæpɪtəl","s":"cap-i-tal"},"know":{"p":"noʊ","s":"know"},"tell":{"p":"tɛl","s":"tell"},"address":{"p":"ˈæˌdrɛs","s":"ad-dress"},"postcard":{"p":"ˈpoʊˌskɑrd","s":"post-card"},"hobby":{"p":"ˈhɑbi","s":"hob-by"},"then":{"p":"ðɛn","s":"then"},"now":{"p":"naʊ","s":"now"},"ago":{"p":"əˈgoʊ","s":"ago"},"mobile phone":{"p":"ˈmoʊbəl foʊn","s":"mo-bile-phone"},"internet":{"p":"ˈɪntərˌnɛt","s":"in-ter-net"},"newspaper":{"p":"ˈnuzˌpeɪpər","s":"news-pa-per"},"news":{"p":"nuz","s":"news"},"useful":{"p":"ˈjusfəl","s":"use-ful"},"change":{"p":"ʧeɪnʤ","s":"change"},"earth":{"p":"ərθ","s":"earth"},"protect":{"p":"prəˈtɛkt","s":"pro-tect"},"save":{"p":"seɪv","s":"save"},"pollution":{"p":"pəˈluʃən","s":"pol-lu-tion"},"recycle":{"p":"riˈsaɪkəl","s":"re-cy-cle"},"plant":{"p":"plænt","s":"plant"},"air":{"p":"ɛr","s":"air"},"environment":{"p":"ɪnˈvaɪrənmənt","s":"en-vi-ron-ment"},"bin":{"p":"bɪn","s":"bin"},"smoke":{"p":"smoʊk","s":"smoke"},"factory":{"p":"ˈfæktəri","s":"fac-to-ry"},"plant trees":{"p":"plænt triz","s":"plan-t trees"},"mouse":{"p":"maʊs","s":"mouse"},"net":{"p":"nɛt","s":"net"},"bite":{"p":"baɪt","s":"bite"},"teeth":{"p":"tiθ","s":"teeth"},"sharp":{"p":"ʃɑrp","s":"sharp"},"laugh":{"p":"læf","s":"laugh"},"catch":{"p":"kæʧ","s":"catch"},"hole":{"p":"hoʊl","s":"hole"},"habit":{"p":"ˈhæbət","s":"habit"},"early":{"p":"ˈərli","s":"ear-ly"},"tidy":{"p":"ˈtaɪdi","s":"tidy"},"brush":{"p":"brəʃ","s":"brush"},"never":{"p":"ˈnɛvər","s":"nev-er"},"always":{"p":"ˈɔlˌweɪz","s":"al-ways"},"finish":{"p":"ˈfɪnɪʃ","s":"fin-ish"},"order":{"p":"ˈɔrdər","s":"or-der"},"cola":{"p":"ˈkoʊlə","s":"co-la"},"need":{"p":"nid","s":"need"},"fat":{"p":"fæt","s":"fat"},"protein":{"p":"ˈproʊˌtin","s":"pro-tein"},"health":{"p":"hɛlθ","s":"health"},"way":{"p":"weɪ","s":"way"},"turn left":{"p":"tərn lɛft","s":"turn left"},"turn right":{"p":"tərn raɪt","s":"turn right"},"go straight":{"p":"goʊ streɪt","s":"go s-traight"},"crossing":{"p":"ˈkrɔsɪŋ","s":"cross-ing"},"traffic lights":{"p":"ˈtræfɪk laɪts","s":"traf-fic-lights"},"bookshop":{"p":"ˈbʊkˌʃɑp","s":"book-shop"},"report":{"p":"rɪˈpɔrt","s":"re-port"},"sky":{"p":"skaɪ","s":"sky"},"climate":{"p":"ˈklaɪmɪt","s":"cli-mate"},"visit":{"p":"ˈvɪzɪt","s":"vis-it"},"kangaroo":{"p":"ˌkæŋgərˈu","s":"kan-ga-roo"},"koala":{"p":"koʊˈɑlə","s":"koala"},"sydney":{"p":"ˈsɪdni","s":"syd-ney"},"opera house":{"p":"ˈɑprə haʊs","s":"op-er-a-house"},"place":{"p":"pleɪs","s":"place"},"people":{"p":"ˈpipəl","s":"peo-ple"},"leaf":{"p":"lif","s":"leaf"}};
+
 const LEVELS = {  // 经验阈值 → 称号
   0:"Lv.1 英语小学者", 100:"Lv.2 单词小新星", 250:"Lv.3 词汇魔法师",
   450:"Lv.4 拼写小达人", 700:"Lv.5 英语探险家", 1000:"Lv.6 词汇小博士",
@@ -2041,7 +2063,7 @@ function show(v){
 let lastMode = "learn";
 let pickBook = "1A";                    // 选课本界面当前浏览的册
 const MODE_TITLE = { learn:"选择课本 · 学习", spell:"选择课本 · 拼写",
-                     match:"选择课本 · 配对", quiz:"选择课本 · 抢答" };
+                     listen:"选择课本 · 听音拼写", match:"选择课本 · 配对", quiz:"选择课本 · 抢答" };
 
 /* 按「册 / 单元」定位词表 */
 function bookOf(id){ return BOOKS.find(b => b.id === id) || BOOKS[0]; }
@@ -2099,6 +2121,7 @@ function startGame(mode, bid, ui){
   pickBook = bid; save.lastBook = bid; persist();
   if(mode==="learn") startLearn();
   else if(mode==="spell") startSpell();
+  else if(mode==="listen") startListenSpell();
   else if(mode==="match") startMatch();
   else if(mode==="quiz") startQuiz();
 }
@@ -2620,14 +2643,21 @@ function startLearn(){
   show("learn");
   renderLearnCard();
 }
+function wordMeta(word){
+  return WORD_META[String(word || "").toLowerCase()] || { p:"", s:"" };
+}
 function renderLearnCard(){
   const w = curWords[curNow];
+  const meta = wordMeta(w.e);
   document.getElementById("learnWord").textContent = w.e;
+  document.getElementById("learnPhonetic").textContent = meta.p ? `/${meta.p}/` : "";
+  document.getElementById("learnSyllables").textContent = meta.s ? `音节：${meta.s}` : "";
   document.getElementById("learnEmoji").textContent = w.i;
   document.getElementById("learnCn").textContent = w.c;
   document.getElementById("learnEx").textContent = w.x;
   document.getElementById("learnNum").textContent = (curNow+1) + " / " + curWords.length;
   document.getElementById("learnCard").classList.remove("flip");
+  clearRecording();
   speak(w.e);
 }
 function flipCard(){ document.getElementById("learnCard").classList.toggle("flip"); }
@@ -2639,6 +2669,55 @@ function markLearned(){
   markLearnedWord(curBook, curUnit, w);
   sGood(); toast("⭐ 已标记学会：" + w); addXP(5);
   nextWord();
+}
+
+/* 跟读录音只在内存中处理，不上传、不写入存档 */
+let mediaRecorder = null, recordingStream = null, recordingChunks = [], recordingUrl = null;
+async function toggleRecording(){
+  const btn = document.getElementById("recordBtn");
+  if(mediaRecorder && mediaRecorder.state === "recording"){
+    btn.textContent = "⏳ 保存录音…";
+    mediaRecorder.stop();
+    return;
+  }
+  if(typeof navigator === "undefined" || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined"){
+    toast("当前浏览器不能录音，请用 Safari 或 Chrome 打开");
+    return;
+  }
+  try{
+    recordingStream = await navigator.mediaDevices.getUserMedia({ audio:true });
+    recordingChunks = [];
+    mediaRecorder = new MediaRecorder(recordingStream);
+    mediaRecorder.ondataavailable = ev => { if(ev.data && ev.data.size) recordingChunks.push(ev.data); };
+    mediaRecorder.onstop = () => {
+      try{
+        if(recordingUrl) URL.revokeObjectURL(recordingUrl);
+        const blob = new Blob(recordingChunks, { type:mediaRecorder.mimeType || "audio/webm" });
+        recordingUrl = URL.createObjectURL(blob);
+        const audio = document.getElementById("recordAudio");
+        audio.src = recordingUrl;
+        document.getElementById("recordPanel").style.display = "block";
+        btn.textContent = "🎙 重新跟读";
+        toast("录音完成，点播放听听自己的发音");
+      }catch(e){ toast("录音保存失败，请再试一次"); }
+      if(recordingStream){ recordingStream.getTracks().forEach(t=>t.stop()); recordingStream = null; }
+      mediaRecorder = null;
+    };
+    mediaRecorder.start();
+    btn.textContent = "⏹ 停止录音";
+    toast("🎙 开始录音，请跟着读一遍");
+  }catch(e){ toast("没有取得麦克风权限"); }
+}
+function clearRecording(){
+  try{
+    if(mediaRecorder && mediaRecorder.state === "recording"){ mediaRecorder.onstop = null; mediaRecorder.stop(); }
+    if(recordingStream){ recordingStream.getTracks().forEach(t=>t.stop()); recordingStream = null; }
+    if(recordingUrl){ URL.revokeObjectURL(recordingUrl); recordingUrl = null; }
+    mediaRecorder = null; recordingChunks = [];
+    const audio = document.getElementById("recordAudio"); if(audio) audio.src = "";
+    const panel = document.getElementById("recordPanel"); if(panel) panel.style.display = "none";
+    const btn = document.getElementById("recordBtn"); if(btn) btn.textContent = "🎙 跟读录音";
+  }catch(e){}
 }
 
 /* ================= 课本句子 ================= */
@@ -2702,7 +2781,14 @@ function startSpell(){
   const words = shuffle(unitOf(curBook, curUnit).words.slice()).slice(0,10)
     .map(w => Object.assign({}, w, { _bookId:curBook, _unitIndex:curUnit }));
   spellState = { words, qi:0, lives:3, score:0, combo:0, correct:0, hints:0, done:false,
-    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:false, practiceMode:!!save.practiceMode };
+    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:false, listenMode:false, practiceMode:!!save.practiceMode };
+  spellLoadQ(); show("spell");
+}
+function startListenSpell(){
+  const words = shuffle(unitOf(curBook, curUnit).words.slice()).slice(0,10)
+    .map(w => Object.assign({}, w, { _bookId:curBook, _unitIndex:curUnit }));
+  spellState = { words, qi:0, lives:3, score:0, combo:0, correct:0, hints:0, done:false,
+    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:false, listenMode:true, practiceMode:!!save.practiceMode };
   spellLoadQ(); show("spell");
 }
 function startReview(){
@@ -2710,20 +2796,22 @@ function startReview(){
   if(!items.length){ toast("今天没有待复习的错词～"); renderWrongBook(); return; }
   const words = shuffle(items.map(x => Object.assign({}, x.word, { _bookId:x.book.id, _unitIndex:x.ui })));
   spellState = { words, qi:0, lives:3, score:0, combo:0, correct:0, hints:0, done:false,
-    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:true, practiceMode:true };
+    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:true, listenMode:false, practiceMode:true };
   spellLoadQ(); show("spell");
 }
 function spellLoadQ(){
   const st = spellState, w = st.words[st.qi];
-  document.getElementById("spellTitle").textContent = st.reviewMode ? "📕 今日复习" : "🧩 拼写挑战";
+  document.getElementById("spellTitle").textContent = st.reviewMode ? "📕 今日复习" : st.listenMode ? "🎧 听音拼写" : "🧩 拼写挑战";
   document.getElementById("spellQ").textContent = `第 ${st.qi+1} / ${st.words.length} 题`;
   document.getElementById("spellScore").textContent = st.score;
   document.getElementById("spellCombo").textContent = st.combo>1 ? "🔥 连击 x"+st.combo+" (+"+ (st.combo*5) +"加分)" : "";
-  document.getElementById("spellEmoji").textContent = w.i;
-  document.getElementById("spellCn").textContent = w.c;
+  document.getElementById("spellEmoji").textContent = st.listenMode ? "🎧" : w.i;
+  document.getElementById("spellCn").textContent = st.listenMode ? "听音拼写" : w.c;
   document.getElementById("spellPrompt").textContent = st.reviewMode
     ? "这是之前拼错的单词，答对后会安排下一次复习。"
+    : st.listenMode ? "点「再听一遍」，听清发音后拼出单词。"
     : "点击下面的字母，拼出这个单词吧！";
+  refreshSpellMeta();
   document.getElementById("spellCheckBtn").disabled = false;
   refreshSpellModeUI();
   // 目标字母序列；词组的空格自动预填，孩子只需拼字母
@@ -2734,6 +2822,21 @@ function spellLoadQ(){
   renderSpellSlots();
   renderSpellTray();
   speak(w.e);
+}
+function refreshSpellMeta(){
+  const st = spellState; if(!st) return;
+  const el = document.getElementById("spellMeta"); if(!el) return;
+  const w = st.words[st.qi]; if(!w) return;
+  const meta = wordMeta(w.e);
+  const show = st.reviewMode || st.practiceMode || Number(st.hints || 0) > 0;
+  if(!show){
+    el.textContent = "💡 需要帮助时，点“提示一个字母”查看音标和音节";
+    return;
+  }
+  const parts = [];
+  if(meta.p) parts.push(`<b>/${meta.p}/</b>`);
+  if(meta.s) parts.push(`<span class="meta-syllables">音节：${meta.s}</span>`);
+  el.innerHTML = parts.join("") || "这个词暂时没有音标数据";
 }
 function refreshSpellModeUI(){
   const st = spellState; if(!st) return;
@@ -2768,6 +2871,7 @@ function spellHint(){
   st.slotSrc[pos] = ti;
   st.trayEls[ti].classList.add("used");
   st.hints = Number(st.hints || 0) + 1;
+  refreshSpellMeta();
   updateSlots();
   sOk();
   toast("💡 已提示第 " + (pos + 1) + " 个字母");
@@ -2852,6 +2956,7 @@ function checkSpell(){
     const gain = firstCorrect ? 10 + bonus : 5;
     st.score += gain; addXP(gain);
     if(st.reviewMode) toast(firstCorrect ? "✅ 复习通过，已经安排下一次！" : "✅ 又拼对啦！");
+    else if(st.listenMode) toast(`✅ ${w.e} = ${w.c}，+${gain}`);
     else toast(firstCorrect ? "✅ 太棒了！+" + gain : "✅ 又拼对啦！+" + gain);
     setTimeout(nextSpellQ, 800);
   } else {
@@ -2881,7 +2986,7 @@ function checkSpell(){
 function playSpellSound(){ if(spellState) speak(spellState.words[spellState.qi].e); }
 function nextSpellQ(){
   const st = spellState;
-  if(st.qi+1 >= st.words.length){ showConclude(st.reviewMode ? "review" : "spell"); return; }
+  if(st.qi+1 >= st.words.length){ showConclude(st.reviewMode ? "review" : st.listenMode ? "listen" : "spell"); return; }
   st.qi++;
   spellLoadQ();
 }
@@ -3058,6 +3163,7 @@ function showConclude(mode, extra){
   const card = document.getElementById("resultCard");
   const modeMeta = {
     spell:{t:"🧩 拼写挑战", emoji:"🏆", msg:(s)=>"你拼对了 <b>"+s.correct+"</b> / "+(s.initialTotal||s.words.length)+" 个单词！"},
+    listen:{t:"🎧 听音拼写", emoji:"🎧", msg:(s)=>"你听音拼对了 <b>"+s.correct+"</b> / "+(s.initialTotal||s.words.length)+" 个单词！"},
     review:{t:"📕 今日复习", emoji:"📕", msg:(s)=>"你复习通过 <b>"+s.correct+"</b> / "+(s.initialTotal||s.words.length)+" 个错词！"},
     match:{t:"🃏 翻牌配对", emoji:"🎯", msg:(s,ex)=>"完成配对用了 <b>"+ex.steps+"</b> 步、"+(ex.secs<60?"<b>"+ex.secs+"</b> 秒":"<b>"+Math.floor(ex.secs/60)+"分"+ex.secs%60+"秒</b>")},
     quiz:{t:"⚡ 快速抢答", emoji:"🚀", msg:(s)=>"你答对了 <b>"+s.correct+"</b> / "+s.qs.length+" 题！"},
@@ -3068,10 +3174,10 @@ function showConclude(mode, extra){
   let starsHtml = "⭐⭐⭐";
   if(mode==="match" && extra) starsHtml = "⭐".repeat(extra.stars || 1);
   let scoreLine = "";
-  if(mode==="spell"||mode==="review") scoreLine = `<div class="stat"><div class="v">${spellState.score}</div><div class="k">得分</div></div>`;
+  if(mode==="spell"||mode==="listen"||mode==="review") scoreLine = `<div class="stat"><div class="v">${spellState.score}</div><div class="k">得分</div></div>`;
   if(mode==="quiz")  scoreLine = `<div class="stat"><div class="v">${quizState.score}</div><div class="k">得分</div></div>`;
   if(mode==="match") scoreLine = `<div class="stat"><div class="v">${extra.score||0}</div><div class="k">得分</div></div>`;
-  const obtained = (mode==="spell"||mode==="review") ? spellState.score : mode==="quiz" ? quizState.score : (extra&&extra.score)||0;
+  const obtained = (mode==="spell"||mode==="listen"||mode==="review") ? spellState.score : mode==="quiz" ? quizState.score : (extra&&extra.score)||0;
   card.innerHTML = `
     <div class="result-emoji">${meta.emoji}</div>
     <div class="result-title">闯关完成！</div>
@@ -3081,7 +3187,7 @@ function showConclude(mode, extra){
       <div class="stat"><div class="v">⭐⭐ <span style="font-size:15px;">经验</span></div><div class="k">已到账</div></div>
     </div>
     <div class="xp-gain">✨ 本局获得经验 +${obtained}</div>
-    <p style="font-size:15px;color:var(--ink-soft);font-weight:600;line-height:1.7;">${meta.msg((mode==="spell"||mode==="review")?spellState:mode==="quiz"?quizState:null, extra)}</p>`;
+    <p style="font-size:15px;color:var(--ink-soft);font-weight:600;line-height:1.7;">${meta.msg((mode==="spell"||mode==="listen"||mode==="review")?spellState:mode==="quiz"?quizState:null, extra)}</p>`;
   document.getElementById("resultReplayBtn").onclick = ()=> mode==="review" ? startReview() : startGame(mode, curBook, curUnit);
   const themeBtn = document.getElementById("resultThemeBtn");
   if(mode==="review"){
