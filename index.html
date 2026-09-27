@@ -69,6 +69,7 @@
     background:#f7f7fc;cursor:pointer;border:2px solid transparent;transition:all .15s;}
   .voice-row:hover{background:#eef4ff;}
   .voice-row.sel{background:#e9f9f1;border-color:var(--green);}
+  .voice-row.disabled{opacity:.48;cursor:not-allowed;background:#f4f4f8;}
   .voice-row .v-icon{font-size:22px;}
   .voice-row .v-info{flex:1;display:flex;flex-direction:column;line-height:1.35;}
   .voice-row .v-info b{font-size:15px;}
@@ -573,8 +574,8 @@
       <div class="voice-panel">
         <h3>挑一位声音好听的英语老师</h3>
         <div class="tip">
-          👉 列表按推荐度排序，<b>👩 女声老师优先</b>。点「▶ 试听」听一句，喜欢哪个就点它选中。<br>
-          💡 如果听起来很机械：在电脑「系统设置 → 辅助功能 → 朗读内容 → 声音」里，把英语的<b>增强版语音</b>下载下来，这里会自动优先使用更清晰的那个。
+          👉 只需要选择一位老师：<b>女声</b>或<b>男声</b>。系统会自动优先选择本地、增强版且发音清楚的英语语音。<br>
+          💡 如果某一项显示“未安装”：请在手机或电脑的系统设置里下载对应的英语增强语音，再回来刷新本页。
         </div>
         <div class="voice-list" id="voiceList"></div>
         <div class="rate-row">
@@ -2134,9 +2135,11 @@ const FEMALE_HINTS = ["samantha","karen","moira","tessa","fiona","serena","allis
   "katherine","vicki","victoria","kathy","zira","aria","hazel","jenny","salli","kimberly","joanna",
   "sofia","nicky","linda","catherine","zoe","chloe","amelie","amelia","female","woman","girl"];
 const MALE_HINTS = ["daniel","alex","fred","tom","oliver","david","mark","george","matthew",
-  "justin","kevin","rishi","raj","diego","male","boy"];
-/* 高质量女声（发音最清楚）额外加分 */
-const TOP_FEMALE = ["samantha","karen","aria","zira","jenny","joanna","kimberly","salli","ava","serena"];
+  "justin","kevin","rishi","raj","diego","guy","davis","james","ryan","male","boy"];
+const TOP_CLEAR = ["samantha","karen","aria","zira","jenny","joanna","kimberly","salli","ava","serena",
+  "daniel","alex","guy","davis","david","mark","oliver","matthew","rishi"];
+const BAD_VOICE = ["compact","espeak","pico","whisper","zarvox","albert","bad news","bells","boing",
+  "bubbles","cellos","deranged","good news","hysterical","junior","organ","superstar","trinoids"];
 
 function allEnVoices(){
   if(!("speechSynthesis" in window)) return [];
@@ -2148,30 +2151,46 @@ function voiceGender(v){
   if(MALE_HINTS.some(k => n.includes(k))) return "m";
   return "?";
 }
-function voiceScore(v){
-  const g = voiceGender(v), n = (v.name || "").toLowerCase();
+/* 发音清晰度评分：只比较同一性别内部，优先本地和增强/神经语音 */
+function voiceClarityScore(v){
+  const n = (v.name || "").toLowerCase();
   let s = 0;
-  if(g === "f") s += 100;              // 女声优先（要"女老师"）
-  else if(g === "?") s += 25;          // 未知性别次之
-  if(TOP_FEMALE.some(k => n.includes(k))) s += 30;   // 清晰的高质量女声
-  if(v.localService) s += 12;          // 本地语音更清晰、无需联网
-  if(/^en-US/i.test(v.lang || "")) s += 8;
-  if(/premium|enhanced|增强|siri/i.test(n)) s += 6;  // 增强版音质
+  if(v.localService) s += 45;
+  if(/premium|enhanced|neural|natural|siri|增强|神经网络/i.test(n)) s += 40;
+  if(TOP_CLEAR.some(k => n.includes(k))) s += 30;
+  if(/microsoft|google|apple/i.test(n)) s += 10;
+  if(/^en-(US|GB|AU)/i.test(v.lang || "")) s += 8;
+  if(BAD_VOICE.some(k => n.includes(k))) s -= 100;
   return s;
 }
+function voiceScore(v){
+  const g = voiceGender(v), n = (v.name || "").toLowerCase();
+  let s = voiceClarityScore(v);
+  if(g === "f") s += 100;
+  else if(g === "?") s += 25;
+  if(TOP_CLEAR.some(k => n.includes(k))) s += 10;
+  return s;
+}
+function pickVoiceByGender(gender){
+  const list = allEnVoices().filter(v => voiceGender(v) === gender);
+  if(!list.length) return null;
+  return list.sort((a,b) => voiceClarityScore(b) - voiceClarityScore(a))[0] || null;
+}
 function pickBestVoice(){
+  const female = pickVoiceByGender("f");
+  if(female) return female;
   const vs = allEnVoices();
   if(!vs.length) return null;
-  return vs.slice().sort((a,b) => voiceScore(b) - voiceScore(a))[0] || null;
+  return vs.slice().sort((a,b) => voiceClarityScore(b) - voiceClarityScore(a))[0] || null;
 }
-/* 当前使用的语音：用户选中的优先，其次自动挑最佳女声 */
+/* 当前语音：只记“女声/男声”两档，换设备后自动适配最清晰的声音 */
 function currentVoice(){
-  const vs = allEnVoices();
-  if(save.voice){
-    const hit = vs.find(v => v.voiceURI === save.voice);
-    if(hit) return hit;
+  if(save.voiceType !== "f" && save.voiceType !== "m"){
+    const old = allEnVoices().find(v => v.voiceURI === save.voice || v.name === save.voice);
+    save.voiceType = old && voiceGender(old) === "m" ? "m" : "f";
   }
-  return pickBestVoice();
+  if(save.voiceType === "m") return pickVoiceByGender("m") || pickBestVoice();
+  return pickVoiceByGender("f") || pickBestVoice();
 }
 function ensureVoices(){
   if("speechSynthesis" in window){
@@ -2189,24 +2208,30 @@ function speak(text){
   u.pitch = 1.05;
   const v = currentVoice();
   if(v){ u.voice = v; u.lang = v.lang; }
+  u.pitch = save.voiceType === "m" ? 0.96 : 1.04;
   speechSynthesis.speak(u);
 }
-/* 试听某个语音（无视静音开关） */
-function tryVoice(uri){
+/* 试听某个老师类型：f=女声，m=男声 */
+function tryVoice(type){
   if(!("speechSynthesis" in window)) return;
-  const vs = speechSynthesis.getVoices();
-  const v = vs.find(x => x.voiceURI === uri) || vs.find(x => x.name === uri);
+  const v = type === "m" ? pickVoiceByGender("m") : pickVoiceByGender("f") || pickBestVoice();
+  if(!v) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance("Hello! I am your English teacher. Let's learn together!");
-  u.lang = "en-US";
+  u.lang = v.lang || "en-US";
   u.rate = (typeof save.rate === "number" ? save.rate : 0.8);
-  u.pitch = 1.05;
-  if(v){ u.voice = v; u.lang = v.lang; }
+  u.pitch = type === "m" ? 0.96 : 1.04;
+  u.voice = v;
   speechSynthesis.speak(u);
 }
-function selectVoice(uri){
-  save.voice = uri; persist(); renderVoicePanel(); sOk();
-  tryVoice(uri); toast("已选择这位老师 👩‍🏫");
+function selectVoice(type){
+  if(type !== "f" && type !== "m") return;
+  const v = pickVoiceByGender(type);
+  if(!v){ toast("这个设备还没有安装英语男声"); return; }
+  save.voiceType = type;
+  save.voice = v.voiceURI;
+  persist(); renderVoicePanel(); sOk();
+  tryVoice(type); toast(type === "m" ? "已选择男声老师 👨‍🏫" : "已选择女声老师 👩‍🏫");
 }
 function setRate(r){
   save.rate = r; persist(); renderVoicePanel();
@@ -2228,36 +2253,30 @@ function renderVoicePanel(){
        line-height:1.8;">正在读取系统语音…<br>若长时间为空，请换用 Chrome / Edge / Safari 打开。</div>`;
     return;
   }
-  const ordered = vs.slice().sort((a,b) => voiceScore(b) - voiceScore(a));
-  const cur = currentVoice();
-  const curUri = cur ? cur.voiceURI : null;
+  if(save.voiceType !== "f" && save.voiceType !== "m") save.voiceType = "f";
   wrap.innerHTML = "";
-  // 分三组展示：女声（推荐）→ 未知 → 男声
-  [{g:"f", t:"👩 女声老师（推荐）"}, {g:"?", t:"🔊 其他声音"}, {g:"m", t:"👨 男声"}].forEach(gi=>{
-    const list = ordered.filter(v => voiceGender(v) === gi.g);
-    if(!list.length) return;
-    const h = document.createElement("div");
-    h.className = "v-group-title"; h.textContent = gi.t;
-    wrap.appendChild(h);
-    list.forEach(v=>{
-      const row = document.createElement("div");
-      row.className = "voice-row" + (curUri === v.voiceURI ? " sel" : "");
-      const ic = document.createElement("span");
-      ic.className = "v-icon";
-      ic.textContent = gi.g === "f" ? "👩" : gi.g === "m" ? "👨" : "🔊";
-      const info = document.createElement("span");
-      info.className = "v-info";
-      const nm = document.createElement("b"); nm.textContent = v.name;
-      const meta = document.createElement("i");
-      meta.textContent = v.lang + (v.localService ? " · 本地" : " · 需联网");
-      info.appendChild(nm); info.appendChild(meta);
+  [{ type:"f", icon:"👩", label:"女声老师", tip:"清晰、温和，适合日常跟读" },
+   { type:"m", icon:"👨", label:"男声老师", tip:"清晰、稳重，适合听音辨词" }].forEach(choice=>{
+    const v = pickVoiceByGender(choice.type);
+    const selected = save.voiceType === choice.type && !!v;
+    const row = document.createElement("div");
+    row.className = "voice-row" + (selected ? " sel" : "") + (!v ? " disabled" : "");
+    const ic = document.createElement("span"); ic.className = "v-icon"; ic.textContent = choice.icon;
+    const info = document.createElement("span"); info.className = "v-info";
+    const nm = document.createElement("b");
+    nm.textContent = v ? `${choice.label} · ${v.name}` : `${choice.label}（未安装）`;
+    const meta = document.createElement("i");
+    meta.textContent = v ? `${choice.tip} · ${v.lang}${v.localService ? " · 本地" : " · 需联网"}` : "请先在系统设置中下载英语男声";
+    info.appendChild(nm); info.appendChild(meta);
+    row.appendChild(ic); row.appendChild(info);
+    if(v){
       const tryBtn = document.createElement("button");
       tryBtn.className = "btn white small v-try"; tryBtn.textContent = "▶ 试听";
-      tryBtn.onclick = (ev) => { ev.stopPropagation(); tryVoice(v.voiceURI); };
-      row.appendChild(ic); row.appendChild(info); row.appendChild(tryBtn);
-      row.onclick = () => selectVoice(v.voiceURI);
-      wrap.appendChild(row);
-    });
+      tryBtn.onclick = (ev) => { ev.stopPropagation(); tryVoice(choice.type); };
+      row.appendChild(tryBtn);
+      row.onclick = () => selectVoice(choice.type);
+    }
+    wrap.appendChild(row);
   });
   document.querySelectorAll(".rate-btn").forEach(b => {
     b.classList.toggle("sel", Number(b.dataset.r) === (typeof save.rate === "number" ? save.rate : 0.8));
