@@ -104,8 +104,36 @@
   .mc-quiz{border-top:6px solid var(--red);} .mc-quiz .tag{background:var(--red);}
   .mc-notebook{border-top:6px solid var(--yellow);} .mc-notebook .tag{background:#f2a30f;}
   .mc-wrong{border-top:6px solid var(--red);} .mc-wrong .tag{background:var(--red);}
-  .install-wrap{text-align:center;margin-top:16px;}
+  .daily-strip{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:-2px 0 12px;}
+  .daily-strip span{background:rgba(255,255,255,.88);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:800;box-shadow:0 2px 7px rgba(58,58,92,.09);}
+  .home-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;}
   .btn.install-btn{background:#fff;color:#167d70;box-shadow:0 5px 0 #bce7df;border:2px solid #2db7a3;}
+
+  /* 成长报告 */
+  .profile-panel,.growth-card{background:#fff;border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow);}
+  .profile-list{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0 10px;}
+  .profile-chip{background:#f7f7fc;border:2px solid transparent;border-radius:14px;padding:8px 12px;font-family:inherit;
+    font-size:14px;font-weight:800;color:var(--ink);cursor:pointer;transition:all .12s;}
+  .profile-chip.sel{background:#eaf3ff;border-color:var(--blue);color:var(--blue);}
+  .profile-chip .pc-del{margin-left:7px;color:#d9576f;font-size:12px;}
+  .growth-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;font-weight:800;margin-bottom:9px;}
+  .growth-head b{font-size:18px;color:var(--blue);}
+  .goal-progress{height:12px;background:#ececf4;border-radius:999px;overflow:hidden;}
+  .goal-progress i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#3ecf8e,#3b9eff);transition:width .35s;}
+  .goal-row{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:11px;}
+  .goal-choice{background:#f2f2fa;border:2px solid transparent;border-radius:11px;padding:7px 11px;font-family:inherit;font-weight:800;cursor:pointer;color:var(--ink-soft);}
+  .goal-choice.sel{background:#e9f9f1;border-color:var(--green);color:#1f9d66;}
+  .growth-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px;}
+  .growth-stat{background:#fff;border-radius:16px;padding:14px 8px;text-align:center;box-shadow:var(--shadow);}
+  .growth-stat .gs-v{font-size:25px;font-weight:900;color:var(--blue);}
+  .growth-stat .gs-k{font-size:12px;color:var(--ink-soft);font-weight:800;margin-top:3px;}
+  .weekly-chart{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;align-items:end;height:132px;padding-top:8px;}
+  .week-day{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:5px;}
+  .week-bar{width:100%;max-width:32px;min-height:5px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#7ec8ff,#3b9eff);}
+  .week-xp{font-size:10px;color:var(--ink-soft);font-weight:800;}
+  .week-name{font-size:11px;color:var(--ink-soft);font-weight:800;}
+  .backup-tip{font-size:12.5px;color:var(--ink-soft);font-weight:600;line-height:1.6;margin-bottom:10px;}
+  .backup-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
 
   /* 单词本 */
   .nb-group{background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:var(--shadow);}
@@ -236,6 +264,11 @@
   .game-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;}
   .top-cards{display:flex;gap:10px;align-items:center;}
   .lives{font-size:19px;letter-spacing:2px;}
+  .practice-toggle{background:#fff;border:2px solid #d9d9ea;border-radius:99px;padding:6px 11px;font-family:inherit;
+    font-size:12px;font-weight:800;color:var(--ink-soft);cursor:pointer;box-shadow:var(--shadow);}
+  .practice-toggle.on{background:#e9f9f1;border-color:var(--green);color:#1f9d66;}
+  .practice-toggle:disabled{opacity:.65;cursor:default;}
+  .spell-help-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
   .score-chip{background:#fff;border-radius:99px;padding:6px 14px;font-weight:800;font-size:14px;box-shadow:var(--shadow);}
   .q-panel{background:#fff;border-radius:22px;padding:20px;width:100%;max-width:430px;
     text-align:center;box-shadow:var(--shadow);}
@@ -321,7 +354,7 @@
 
 <div id="app" data-page-node-id="Hs5OooVJnZIVk5BDrMrJR1">
   <header class="app-bar" data-page-node-id="PyVO3vXCkNVf1mIEhaGn2m">
-    <div class="logo" data-page-node-id="I8a6RwXJ29VCZJwPLwhSIn">🎈 英语乐园 <small data-page-node-id="fq7zJK1xPY6DWalmiYax3Y">小 1-6 年级</small></div>
+    <div class="logo" data-page-node-id="I8a6RwXJ29VCZJwPLwhSIn">🎈 英语乐园 <small data-page-node-id="fq7zJK1xPY6DWalmiYax3Y">2.0 · 小 1-6 年级</small></div>
     <div class="bar-right" data-page-node-id="pDDhoFcmo2mPfPWenviVs5">
       <div class="pill" title="等级" data-page-node-id="E6Fvhhzs7ij2RLm860iSaO">🏅 <span id="levelName" data-page-node-id="MAwfHCPjNxU2fU1XD8azv1">Lv.1 英语小学者</span></div>
       <div class="pill" title="经验值" data-page-node-id="BepYiTD37gabU0axJkOxjw">⭐ <span id="starCount" data-page-node-id="QXEnQgCYvxrZILGtDTPgEH">0</span></div>
@@ -335,13 +368,17 @@
       <div class="xp-bar" style="width:110px;" data-page-node-id="qlkEE1aCNFwFabGSTDkFeu"><i id="xpBar" style="width:0%" data-page-node-id="hXMO76HhATNrEbMo7gmaNC"></i></div>
     </div>
   </div>
+  <div class="daily-strip">
+    <span>🎯 今日 <b id="todayGoalText">0 / 30 XP</b></span>
+    <span>🔥 连续 <b id="streakCount">0</b> 天</span>
+  </div>
 
   <main data-page-node-id="4aQM0i3awF9vcYBinlHU7U">
     <!-- 主页 -->
     <section class="view active" id="view-home" data-page-node-id="suHelj3eKo9Vgx8liZxBwo">
       <div class="hero" data-page-node-id="HIAAgh7s2g7IkZFERgNscX">
         <div class="title" data-page-node-id="QFPskrvScb4Q3ryO4zAiOP">🎉 <span data-page-node-id="YTQkHroBAZ4kY70tJAX3Xq">英语</span><span data-page-node-id="UkNLF53Zos1n89LtmkqeQ6">探险</span><span data-page-node-id="olftkHCRNF24LhXiTdUTQQ">岛</span> 🎉</div>
-        <div class="sub" data-page-node-id="j3AUsokgGrtzHhhJ9Flavj">一二三四五六全年级 · 边玩边学 ~</div>
+        <div class="sub" data-page-node-id="j3AUsokgGrtzHhhJ9Flavj">v2.0 · 一二三四五六全年级 · 边玩边学 ~</div>
       </div>
       <div class="menu-grid" data-page-node-id="ppQtMBHcl5T6BynMJPeboA">
         <div class="menu-card mc-learn" onclick="goThemes('learn')" data-page-node-id="HrCBUy7bWYxBgq39rA2iXt">
@@ -369,7 +406,8 @@
           <div class="name">错词本</div><div class="desc">错过的词再练一遍</div>
         </div>
       </div>
-      <div class="install-wrap">
+      <div class="home-actions">
+        <button class="btn white small" onclick="goGrowth()">📈 成长报告</button>
         <button class="btn install-btn" id="installBtn" onclick="installApp()">📲 安装到手机，离线也能用</button>
       </div>
       <div class="note">💡 建议：先「单词学习」→ 再玩游戏，记得开声音听纯正发音哦！<br>觉得发音不好听？点右上角「👩‍🏫 老师」换一位试试～</div>
@@ -436,13 +474,17 @@
           <div class="score-chip" id="spellQ" data-page-node-id="X455uBOvG1w2RAc1EHz8wT">第 1 / 10 题</div>
           <div class="lives" id="spellLives" data-page-node-id="2r4SF7Bv17koBMTqG9x18U">❤️❤️❤️</div>
           <div class="score-chip" data-page-node-id="t7dP38NoE7FgRykaAy3yk1">🏆 <span id="spellScore" data-page-node-id="OjaFiCi416PPx6Ii6vcKf4">0</span></div>
+          <button class="practice-toggle" id="spellPracticeBtn" onclick="togglePracticeMode()">🛡 练习模式</button>
         </div>
         <div class="combo" id="spellCombo" data-page-node-id="nVJI4yiNDtbJqbVwHf3Qf0"></div>
         <div class="q-panel" data-page-node-id="NibX8BtDILzQRIeE3FRgW7">
           <div class="q-emoji" id="spellEmoji" data-page-node-id="1d6V329UnV0uvGW6gjosT8">🍎</div>
           <div class="q-cn" id="spellCn" data-page-node-id="aCcxwwvnorXc9GOIwiiZZa">苹果</div>
           <div class="q-prompt" id="spellPrompt" data-page-node-id="xtzsyaAXDCdyfXyi8csybL">点击下面的字母，拼出这个单词吧！</div>
-          <button class="btn speak small" style="margin-top:10px;" onclick="playSpellSound()" data-page-node-id="tcf3mAVkrAFuGIsQEeLdHd">🔊 再听一遍</button>
+          <div class="spell-help-row">
+            <button class="btn speak small" onclick="playSpellSound()" data-page-node-id="tcf3mAVkrAFuGIsQEeLdHd">🔊 再听一遍</button>
+            <button class="btn white small" onclick="spellHint()">💡 提示一个字母</button>
+          </div>
           <div class="spell-slots" id="spellSlots" data-page-node-id="sC1dKDirqEK240fh9unj63"></div>
           <div class="letter-tray" id="spellTray" data-page-node-id="L81lypxRW630iR0NCb8aqf"></div>
         </div>
@@ -539,6 +581,43 @@
         <button class="nb-tab" id="tabSents" onclick="setNbTab('sents')">💬 句子本 <b id="nbSents">0</b></button>
       </div>
       <div id="notebookList" style="max-width:470px;margin:0 auto;"></div>
+    </section>
+
+    <!-- 成长报告 / 档案管理 -->
+    <section class="view" id="view-growth">
+      <div class="page-head">
+        <button class="back-btn" onclick="show('home')">← 回主页</button>
+        <div class="page-title">📈 成长报告 · 2.0</div>
+      </div>
+      <div class="profile-panel">
+        <div class="growth-head"><span>👦 学习档案</span><button class="btn white small" onclick="addProfile()">＋ 添加孩子</button></div>
+        <div class="profile-list" id="profileList"></div>
+      </div>
+      <div class="growth-card">
+        <div class="growth-head"><span>🎯 今日目标</span><b id="growthToday">0 / 30 XP</b></div>
+        <div class="goal-progress"><i id="growthGoalBar"></i></div>
+        <div class="goal-row" id="goalOptions"></div>
+      </div>
+      <div class="growth-grid">
+        <div class="growth-stat"><div class="gs-v" id="growthStreak">0</div><div class="gs-k">🔥 连续学习天</div></div>
+        <div class="growth-stat"><div class="gs-v" id="growthAccuracy">0%</div><div class="gs-k">🎯 今日正确率</div></div>
+        <div class="growth-stat"><div class="gs-v" id="growthLearned">0</div><div class="gs-k">📚 已学会单词</div></div>
+        <div class="growth-stat"><div class="gs-v" id="growthDue">0</div><div class="gs-k">📕 今日待复习</div></div>
+      </div>
+      <div class="growth-card">
+        <div class="growth-head"><span>📊 最近 7 天</span><span>经验值</span></div>
+        <div class="weekly-chart" id="weeklyChart"></div>
+      </div>
+      <div class="growth-card">
+        <div class="growth-head"><span>💾 数据备份</span><span>建议定期导出</span></div>
+        <p class="backup-tip">备份包含所有孩子档案、学习进度、错词本和每日记录。换手机时先导出，再在新手机导入即可。</p>
+        <div class="backup-actions">
+          <button class="btn blue small" onclick="exportBackup()">📤 导出备份</button>
+          <button class="btn white small" onclick="document.getElementById('backupFile').click()">📥 导入备份</button>
+          <button class="btn red small" onclick="resetCurrentProfile()">♻️ 重置当前档案</button>
+        </div>
+        <input type="file" id="backupFile" accept=".json,application/json" style="display:none" onchange="importBackup(event)">
+      </div>
     </section>
 
     <!-- 错词本 / 今日复习 -->
@@ -1723,22 +1802,126 @@ const LEVELS = {  // 经验阈值 → 称号
 };
 
 /* ================= 状态与存档 ================= */
-const SAVE_KEY = "english_fun_park_v1";
+const SAVE_KEY = "english_fun_park_v2";
+const LEGACY_SAVE_KEY = "english_fun_park_v1";
 const DAY_MS = 24 * 60 * 60 * 1000;
 const REVIEW_DAYS = [0, 1, 2, 4, 7, 15];
-let save = { xp:0, learned:{}, sents:[], wrong:{}, lastBook:"1A" };
-// learned: { "3A#1": [单词, ...] }  sents: [课本句子原文, ...]
-// wrong: { "5A#2::apple": { wrong, correct, stage, nextReview, ... } }
-function loadSave(){
-  try{
-    const s = localStorage.getItem(SAVE_KEY);
-    if(s) save = Object.assign({ xp:0, learned:{}, sents:[], wrong:{}, lastBook:"1A" }, JSON.parse(s));
-  }catch(e){}
-  save.learned = save.learned && typeof save.learned === "object" ? save.learned : {};
-  save.sents = Array.isArray(save.sents) ? save.sents : [];
-  save.wrong = save.wrong && typeof save.wrong === "object" && !Array.isArray(save.wrong) ? save.wrong : {};
+const GOAL_OPTIONS = [20, 30, 50, 100];
+let profileSeq = 0;
+let profiles = { activeId:"", list:[] };
+let save = null;
+
+function newSaveData(){
+  return { xp:0, learned:{}, sents:[], wrong:{}, activity:{}, dailyGoal:30, practiceMode:false, lastBook:"1A" };
 }
-function persist(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(save)); }catch(e){} }
+function normalizeSaveData(data){
+  const out = Object.assign(newSaveData(), data || {});
+  out.xp = Number(out.xp || 0);
+  out.learned = out.learned && typeof out.learned === "object" && !Array.isArray(out.learned) ? out.learned : {};
+  out.sents = Array.isArray(out.sents) ? out.sents : [];
+  out.wrong = out.wrong && typeof out.wrong === "object" && !Array.isArray(out.wrong) ? out.wrong : {};
+  out.activity = out.activity && typeof out.activity === "object" && !Array.isArray(out.activity) ? out.activity : {};
+  out.dailyGoal = GOAL_OPTIONS.includes(Number(out.dailyGoal)) ? Number(out.dailyGoal) : 30;
+  out.practiceMode = !!out.practiceMode;
+  out.lastBook = out.lastBook || "1A";
+  return out;
+}
+function newProfileId(){
+  profileSeq++;
+  return `child-${Date.now().toString(36)}-${profileSeq}-${Math.random().toString(36).slice(2,6)}`;
+}
+function makeProfile(name, emoji, data){
+  return { id:newProfileId(), name:name || "宝贝", emoji:emoji || "🐣", save:normalizeSaveData(data) };
+}
+function activeProfile(){
+  return profiles.list.find(p => p.id === profiles.activeId) || profiles.list[0];
+}
+function loadSave(){
+  let loaded = null;
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(raw) loaded = JSON.parse(raw);
+  }catch(e){}
+  if(loaded && Array.isArray(loaded.list) && loaded.list.length){
+    profiles = {
+      activeId: loaded.activeId || loaded.list[0].id,
+      list: loaded.list.map(p => ({
+        id: p.id || newProfileId(),
+        name: p.name || "宝贝",
+        emoji: p.emoji || "🐣",
+        save: normalizeSaveData(p.save)
+      }))
+    };
+  } else {
+    let legacy = null;
+    try{
+      const oldRaw = localStorage.getItem(LEGACY_SAVE_KEY);
+      if(oldRaw) legacy = JSON.parse(oldRaw);
+    }catch(e){}
+    const first = makeProfile("宝贝", "🐣", legacy);
+    profiles = { activeId:first.id, list:[first] };
+  }
+  if(!profiles.list.some(p => p.id === profiles.activeId)) profiles.activeId = profiles.list[0].id;
+  save = activeProfile().save;
+}
+function persist(){
+  const current = activeProfile();
+  if(current) current.save = save;
+  try{
+    localStorage.setItem(SAVE_KEY, JSON.stringify({ version:2, activeId:profiles.activeId, list:profiles.list }));
+    // 保留旧格式，方便单文件版或旧版本读取进度
+    localStorage.setItem(LEGACY_SAVE_KEY, JSON.stringify(save));
+  }catch(e){}
+}
+function dateKey(d = new Date()){
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+function getActivity(key = dateKey()){
+  return (save.activity && save.activity[key]) || {};
+}
+function ensureActivity(key = dateKey()){
+  save.activity = save.activity || {};
+  if(!save.activity[key]) save.activity[key] = { xp:0, correct:0, wrong:0, learned:0, sentences:0, reviews:0 };
+  return save.activity[key];
+}
+function logStudy(type, n = 1){
+  if(!n) return;
+  const a = ensureActivity();
+  a[type] = Number(a[type] || 0) + n;
+  persist();
+  refreshDailyStrip();
+}
+function hasStudyActivity(a){
+  if(!a) return false;
+  return ["xp","correct","wrong","learned","sentences","reviews"].some(k => Number(a[k] || 0) > 0);
+}
+function studyStreak(){
+  const d = new Date();
+  if(!hasStudyActivity(getActivity(dateKey(d)))) d.setDate(d.getDate() - 1);
+  let streak = 0;
+  while(hasStudyActivity(getActivity(dateKey(d)))){
+    streak++;
+    d.setDate(d.getDate() - 1);
+  }
+  return streak;
+}
+function studyAccuracy(){
+  const a = getActivity();
+  const correct = Number(a.correct || 0), wrong = Number(a.wrong || 0);
+  if(!correct && !wrong) return 0;
+  return Math.round(correct / (correct + wrong) * 100);
+}
+function refreshDailyStrip(){
+  const a = getActivity();
+  const xp = Number(a.xp || 0), goal = Number(save.dailyGoal || 30);
+  const text = document.getElementById("todayGoalText");
+  if(text) text.textContent = `${xp} / ${goal} XP`;
+  const streak = document.getElementById("streakCount");
+  if(streak) streak.textContent = studyStreak();
+}
 function xpLevel(px){ let lv=0, prev=0; for(const k in LEVELS){ if(+k<=px){ lv=+k; prev=+k; } } return lv; }
 function nextThresh(px){
   let best=null; for(const k in LEVELS){ if(+k>px){ best=+k; break; } }
@@ -1748,7 +1931,8 @@ function nextThresh(px){
 }
 function addXP(n){
   const before = xpLevel(save.xp);
-  save.xp += n; persist();
+  save.xp += n;
+  logStudy("xp", n);
   const after = xpLevel(save.xp);
   refreshStats();
   if(after>before){ toast("🎉 升级啦！" + LEVELS[after]); confetti(); }
@@ -1757,13 +1941,13 @@ function addXP(n){
 function markLearnedWord(id, ui, w){
   const k = unitTag(id, ui);
   save.learned[k] = save.learned[k] || [];
-  if(!save.learned[k].includes(w)){ save.learned[k].push(w); persist(); }
+  if(!save.learned[k].includes(w)){ save.learned[k].push(w); logStudy("learned", 1); }
 }
 function learnedCount(id, ui){ return unitLearned(id, ui).length; }
 /* 课本句子记录：save.sents = [句子原文, ...] */
 function markSentRead(s){
   save.sents = save.sents || [];
-  if(s && !save.sents.includes(s)){ save.sents.push(s); persist(); return true; }
+  if(s && !save.sents.includes(s)){ save.sents.push(s); logStudy("sentences", 1); return true; }
   return false;
 }
 
@@ -1799,7 +1983,7 @@ function recordWrongWord(id, ui, word){
   p.nextReview = now;
   p.lastWrong = now;
   save.wrong[key] = p;
-  persist();
+  logStudy("wrong", 1);
   refreshReviewStats();
 }
 function recordCorrectWord(id, ui, word){
@@ -1844,6 +2028,7 @@ function refreshStats(){
     document.getElementById("xpBar").style.width = "100%";
   }
   refreshReviewStats();
+  refreshDailyStrip();
 }
 
 /* ================= 视图切换 ================= */
@@ -2069,6 +2254,185 @@ function learnedWords(){
   }));
   return out;
 }
+/* ================= 成长报告与档案 ================= */
+function goGrowth(){ renderGrowth(); show("growth"); }
+function renderProfileList(){
+  const box = document.getElementById("profileList"); if(!box) return;
+  box.innerHTML = "";
+  profiles.list.forEach(p=>{
+    const btn = document.createElement("button");
+    btn.className = "profile-chip" + (p.id === profiles.activeId ? " sel" : "");
+    btn.textContent = `${p.emoji} ${p.name}`;
+    btn.onclick = () => switchProfile(p.id);
+    if(profiles.list.length > 1){
+      const del = document.createElement("span");
+      del.className = "pc-del"; del.textContent = "×";
+      del.onclick = (ev) => { if(ev) ev.stopPropagation(); deleteProfile(p.id); };
+      btn.appendChild(del);
+    }
+    box.appendChild(btn);
+  });
+}
+function renderWeeklyChart(){
+  const box = document.getElementById("weeklyChart"); if(!box) return;
+  box.innerHTML = "";
+  const names = ["日","一","二","三","四","五","六"];
+  const days = [];
+  for(let i=6;i>=0;i--){
+    const d = new Date();
+    d.setHours(12,0,0,0);
+    d.setDate(d.getDate() - i);
+    days.push({ key:dateKey(d), name:names[d.getDay()], xp:Number(getActivity(dateKey(d)).xp || 0) });
+  }
+  const max = Math.max(10, ...days.map(x=>x.xp));
+  days.forEach(day=>{
+    const col = document.createElement("div");
+    col.className = "week-day";
+    const xp = document.createElement("span");
+    xp.className = "week-xp"; xp.textContent = day.xp;
+    const bar = document.createElement("i");
+    bar.className = "week-bar";
+    bar.style.height = Math.max(5, Math.round(day.xp / max * 82)) + "px";
+    const name = document.createElement("span");
+    name.className = "week-name"; name.textContent = day.name;
+    col.appendChild(xp); col.appendChild(bar); col.appendChild(name);
+    box.appendChild(col);
+  });
+}
+function renderGoalOptions(){
+  const box = document.getElementById("goalOptions"); if(!box) return;
+  box.innerHTML = "";
+  GOAL_OPTIONS.forEach(g=>{
+    const btn = document.createElement("button");
+    btn.className = "goal-choice" + (Number(save.dailyGoal) === g ? " sel" : "");
+    btn.textContent = `🎯 ${g} XP`;
+    btn.onclick = () => setDailyGoal(g);
+    box.appendChild(btn);
+  });
+}
+function renderGrowth(){
+  refreshStats();
+  renderProfileList();
+  renderGoalOptions();
+  const a = getActivity();
+  const xp = Number(a.xp || 0), goal = Number(save.dailyGoal || 30);
+  const today = document.getElementById("growthToday");
+  if(today) today.textContent = `${xp} / ${goal} XP`;
+  const bar = document.getElementById("growthGoalBar");
+  if(bar) bar.style.width = Math.min(100, Math.round(xp / goal * 100)) + "%";
+  const streak = document.getElementById("growthStreak"); if(streak) streak.textContent = studyStreak();
+  const accuracy = document.getElementById("growthAccuracy"); if(accuracy) accuracy.textContent = studyAccuracy() + "%";
+  const learned = document.getElementById("growthLearned"); if(learned) learned.textContent = learnedWords().length;
+  const due = document.getElementById("growthDue"); if(due) due.textContent = dueWrongEntries().length;
+  renderWeeklyChart();
+}
+function switchProfile(id){
+  if(id === profiles.activeId) return;
+  persist();
+  profiles.activeId = id;
+  save = activeProfile().save;
+  refreshStats();
+  renderGrowth();
+  toast(`已切换到 ${activeProfile().emoji} ${activeProfile().name}`);
+}
+function addProfile(){
+  const name = typeof prompt === "function" ? prompt("请输入孩子名字：", "宝贝") : null;
+  if(!name || !name.trim()) return;
+  const emojis = ["🐣","🦊","🐼","🦄","🐯","🐧","🐨","🐰"];
+  const p = makeProfile(name.trim().slice(0,12), emojis[profiles.list.length % emojis.length], null);
+  persist();
+  profiles.list.push(p);
+  profiles.activeId = p.id;
+  save = p.save;
+  persist();
+  refreshStats();
+  renderGrowth();
+  toast(`已创建 ${p.emoji} ${p.name} 的学习档案`);
+}
+function deleteProfile(id){
+  if(profiles.list.length <= 1){ toast("至少要保留一个学习档案"); return; }
+  const target = profiles.list.find(p => p.id === id);
+  if(!target) return;
+  if(typeof confirm === "function" && !confirm(`确定删除「${target.name}」的档案吗？学习记录会一起删除。`)) return;
+  persist();
+  profiles.list = profiles.list.filter(p => p.id !== id);
+  if(!profiles.list.some(p => p.id === profiles.activeId)) profiles.activeId = profiles.list[0].id;
+  save = activeProfile().save;
+  persist();
+  refreshStats();
+  renderGrowth();
+  toast("档案已删除");
+}
+function setDailyGoal(goal){
+  if(!GOAL_OPTIONS.includes(Number(goal))) return;
+  save.dailyGoal = Number(goal);
+  persist();
+  refreshDailyStrip();
+  renderGrowth();
+}
+function exportBackup(){
+  try{
+    const payload = {
+      app:"英语乐园",
+      version:2,
+      exportedAt:new Date().toISOString(),
+      profiles:{ activeId:profiles.activeId, list:profiles.list }
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type:"application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `英语乐园-备份-${dateKey()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    toast("备份已导出");
+  }catch(e){ alert("导出失败，请更换浏览器后再试。"); }
+}
+function importBackup(event){
+  const file = event && event.target && event.target.files && event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      const data = JSON.parse(reader.result);
+      const rawProfiles = data && data.profiles && Array.isArray(data.profiles.list) ? data.profiles : data;
+      if(!rawProfiles || !Array.isArray(rawProfiles.list) || !rawProfiles.list.length) throw new Error("bad backup");
+      if(typeof confirm === "function" && !confirm("导入会覆盖当前全部档案，确定继续吗？")) return;
+      profiles = {
+        activeId: rawProfiles.activeId || rawProfiles.list[0].id,
+        list: rawProfiles.list.map(p => ({
+          id: p.id || newProfileId(),
+          name: p.name || "宝贝",
+          emoji: p.emoji || "🐣",
+          save: normalizeSaveData(p.save)
+        }))
+      };
+      if(!profiles.list.some(p => p.id === profiles.activeId)) profiles.activeId = profiles.list[0].id;
+      save = activeProfile().save;
+      persist();
+      refreshStats();
+      renderGrowth();
+      alert("备份导入成功");
+    }catch(e){ alert("这个文件不是有效的英语乐园备份。"); }
+    if(event.target) event.target.value = "";
+  };
+  reader.readAsText(file);
+}
+function resetCurrentProfile(){
+  if(typeof confirm === "function" && !confirm(`确定重置「${activeProfile().name}」的全部学习记录吗？`)) return;
+  const keepRate = save.rate, keepVoice = save.voice;
+  save = newSaveData();
+  if(typeof keepRate === "number") save.rate = keepRate;
+  if(keepVoice) save.voice = keepVoice;
+  activeProfile().save = save;
+  persist();
+  refreshStats();
+  renderGrowth();
+  toast("当前档案已重置");
+}
+
 function goWrongBook(){ renderWrongBook(); show("wrongbook"); }
 function reviewStatusText(p){
   const left = Number(p.nextReview || 0) - Date.now();
@@ -2337,23 +2701,22 @@ let spellState = null;
 function startSpell(){
   const words = shuffle(unitOf(curBook, curUnit).words.slice()).slice(0,10)
     .map(w => Object.assign({}, w, { _bookId:curBook, _unitIndex:curUnit }));
-  spellState = { words, qi:0, lives:3, score:0, combo:0, correct:0, done:false,
-    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:false };
+  spellState = { words, qi:0, lives:3, score:0, combo:0, correct:0, hints:0, done:false,
+    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:false, practiceMode:!!save.practiceMode };
   spellLoadQ(); show("spell");
 }
 function startReview(){
   const items = dueWrongEntries().slice(0, 20);
   if(!items.length){ toast("今天没有待复习的错词～"); renderWrongBook(); return; }
   const words = shuffle(items.map(x => Object.assign({}, x.word, { _bookId:x.book.id, _unitIndex:x.ui })));
-  spellState = { words, qi:0, lives:3, score:0, combo:0, correct:0, done:false,
-    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:true };
+  spellState = { words, qi:0, lives:3, score:0, combo:0, correct:0, hints:0, done:false,
+    initialTotal:words.length, correctedKeys:new Set(), requeued:new Set(), reviewMode:true, practiceMode:true };
   spellLoadQ(); show("spell");
 }
 function spellLoadQ(){
   const st = spellState, w = st.words[st.qi];
   document.getElementById("spellTitle").textContent = st.reviewMode ? "📕 今日复习" : "🧩 拼写挑战";
   document.getElementById("spellQ").textContent = `第 ${st.qi+1} / ${st.words.length} 题`;
-  document.getElementById("spellLives").textContent = st.reviewMode ? "📕 不扣爱心" : "❤️".repeat(st.lives) + "🖤".repeat(3-st.lives);
   document.getElementById("spellScore").textContent = st.score;
   document.getElementById("spellCombo").textContent = st.combo>1 ? "🔥 连击 x"+st.combo+" (+"+ (st.combo*5) +"加分)" : "";
   document.getElementById("spellEmoji").textContent = w.i;
@@ -2362,6 +2725,7 @@ function spellLoadQ(){
     ? "这是之前拼错的单词，答对后会安排下一次复习。"
     : "点击下面的字母，拼出这个单词吧！";
   document.getElementById("spellCheckBtn").disabled = false;
+  refreshSpellModeUI();
   // 目标字母序列；词组的空格自动预填，孩子只需拼字母
   st.expected = w.e.toLowerCase().split("");
   st.filled   = st.expected.map(ch => ch === " " ? " " : undefined);
@@ -2370,6 +2734,44 @@ function spellLoadQ(){
   renderSpellSlots();
   renderSpellTray();
   speak(w.e);
+}
+function refreshSpellModeUI(){
+  const st = spellState; if(!st) return;
+  const btn = document.getElementById("spellPracticeBtn");
+  if(btn){
+    const on = !!(st.reviewMode || st.practiceMode);
+    btn.classList.toggle("on", on);
+    btn.disabled = !!st.reviewMode;
+    btn.textContent = st.reviewMode ? "📕 复习模式" : st.practiceMode ? "🛡 练习中" : "🛡 练习模式";
+  }
+  const lives = document.getElementById("spellLives");
+  if(lives) lives.textContent = st.reviewMode ? "📕 不扣爱心" : st.practiceMode ? "🛡 不扣爱心" : "❤️".repeat(st.lives) + "🖤".repeat(3-st.lives);
+}
+function togglePracticeMode(){
+  const st = spellState;
+  if(st && st.reviewMode){ toast("复习模式本来就不扣爱心"); return; }
+  save.practiceMode = !save.practiceMode;
+  persist();
+  if(st) st.practiceMode = save.practiceMode;
+  refreshSpellModeUI();
+  toast(save.practiceMode ? "🛡 已开启练习模式：答错不扣爱心" : "⚔️ 已切换为闯关模式：答错扣 1 颗爱心");
+}
+function spellHint(){
+  const st = spellState; if(!st || st.done) return;
+  const pos = st.expected.findIndex((ch,i) => !st.locked[i] && st.filled[i] !== ch);
+  if(pos < 0){ toast("已经拼对啦，点「检查拼写」吧"); return; }
+  if(st.filled[pos] !== undefined && st.trayEls && st.trayEls[st.slotSrc[pos]]) st.trayEls[st.slotSrc[pos]].classList.remove("used");
+  const ch = st.expected[pos];
+  const ti = (st.trayEls || []).findIndex(b => b && !b.classList.contains("used") && b.dataset.ch === ch);
+  if(ti < 0){ toast("暂时没有可提示的字母"); return; }
+  st.filled[pos] = ch;
+  st.slotSrc[pos] = ti;
+  st.trayEls[ti].classList.add("used");
+  st.hints = Number(st.hints || 0) + 1;
+  updateSlots();
+  sOk();
+  toast("💡 已提示第 " + (pos + 1) + " 个字母");
+  if(st.filled.every((v,i) => st.locked[i] || v !== undefined)) checkSpell();
 }
 function renderSpellSlots(){
   const st = spellState;
@@ -2444,6 +2846,8 @@ function checkSpell(){
       recordCorrectWord(bookId, unitIndex, w.e);
     }
     sGood(); st.combo++;
+    logStudy("correct", 1);
+    if(st.reviewMode) logStudy("reviews", 1);
     const bonus = st.combo>1 ? st.combo*5 : 0;
     const gain = firstCorrect ? 10 + bonus : 5;
     st.score += gain; addXP(gain);
@@ -2457,16 +2861,16 @@ function checkSpell(){
       st.requeued.add(progressKey);
     }
     sBad();
-    if(!st.reviewMode) st.lives--;
+    if(!st.reviewMode && !st.practiceMode) st.lives--;
     st.combo = 0;
-    document.getElementById("spellLives").textContent = st.reviewMode ? "📕 不扣爱心" : "❤️".repeat(st.lives) + "🖤".repeat(3-st.lives);
+    refreshSpellModeUI();
     document.getElementById("spellCombo").textContent = "";
     const slotsEl = document.getElementById("spellSlots");
     slotsEl.classList.add("wrong-shake");
     setTimeout(()=>slotsEl.classList.remove("wrong-shake"), 450);
     toast(st.reviewMode ? "❌ 再想想，答对就安排下一次复习～" : "❌ 差一点，再试一次！");
     document.getElementById("spellCheckBtn").disabled = false;
-    if(!st.reviewMode && st.lives<=0){ showConclude("spell"); return; }
+    if(!st.reviewMode && !st.practiceMode && st.lives<=0){ showConclude("spell"); return; }
     // 清空重拼，并重新洗牌托盘
     st.filled = st.expected.map(ch => ch === " " ? " " : undefined);
     st.slotSrc = st.expected.map(() => undefined);
@@ -2615,6 +3019,7 @@ function answerQuiz(idx, btnEl){
   const opts = [...document.getElementById("quizOpts").children];
   if(idx===st.answerIdx){
     recordCorrectWord(curBook, curUnit, q.e);
+    logStudy("correct", 1);
     sGood(); st.correct++; st.combo++;
     const gain = 10 + (st.combo-1)*5;
     st.score += gain; addXP(gain);
